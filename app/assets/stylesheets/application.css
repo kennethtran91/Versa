@@ -11,3 +11,25 @@
  *= require_self
  *= require_tree .
  */
+
+.annotateButton {
+	position: absolute;
+}
+
+.annotateForm	{
+	background-color: white;
+	position: absolute;
+	display: none;
+	width: 400px;
+}
+
+.annotateClose {
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+.highlight {
+	background-color: #FFFF88;
+}

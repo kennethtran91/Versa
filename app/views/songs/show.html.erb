@@ -1,3 +1,35 @@
+<script type="text/javascript">
+var song = <%= @song.to_json(:include => :annotations).html_safe %>
+// console.log(song.artist)
+</script>
+
+<div class='annotateForm'>
+	<a class="annotateClose">x</a>
+
+	<h1>New annotation</h1>
+	Artist: <%= @song.artist.name %><br>
+	Song: <%= @song.title %><br>
+
+	<form action="<%= annotations_url(@song) %>" method="post">
+	<input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
+
+	<input type="hidden" 
+				 name="annotation[start_char]" 
+				 id="annotation_start_char">
+
+	<input type="hidden"
+				 name="annotation[end_char]"
+				 id="annotation_end_char">
+
+	<label for="annotation_body">Annotation:</label>
+	<textarea name="annotation[body]" id="annotation_body"></textarea>
+	<input type="submit" value="Submit Annotation">
+	</form>
+
+</div>
+
 <h1>
 	<%= @song.title %>
 </h1>

@@ -1,0 +1,1 @@
+Versa.Models.AlbumTrack = Backbone.RelationalModel.extend({})

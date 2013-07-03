@@ -1,0 +1,12 @@
+Songs
+<br>
+<ul>
+<% songs.each(function(song) { %>
+<li><strong>
+<% var href = '/#/songs/' + song.id %>
+<a href="<%= href %>"><%= song.escape("title") %></a>
+</strong>
+by song artist here.
+</li>
+<% }) %>
+</ul>

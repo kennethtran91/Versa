@@ -1,0 +1,1 @@
+Versa.Models.Annotation = Backbone.RelationalModel.extend({});
