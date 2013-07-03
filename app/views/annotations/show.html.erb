@@ -1,0 +1,11 @@
+<h3>Song: <%= @song.artist.name %> - <%= @song.title %></h3><br>
+<strong>Lyric Snippet:</strong><br>
+<pre>
+	<%= @song.lyrics.gsub(/\r/,"")[@annotation.start_char..@annotation.end_char] %>
+</pre>
+<strong>Annotation:</strong>
+<pre>
+	<%= @annotation.body %>
+</pre>
+Annotator: <%= @annotation.annotator.username %><br>
+<%= link_to "Back to song", song_url(@song) %>

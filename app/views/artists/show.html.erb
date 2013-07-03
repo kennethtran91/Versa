@@ -1,0 +1,22 @@
+<h1><%= @artist.name %></h1>
+<%= @artist.bio if @artist.bio %>
+
+<h3>Songs</h3>
+<%= link_to "Add New Song", new_song_url %>
+<% songs = @artist.songs.sort_by {|song| song.title} %>
+<ul>
+	<% songs.each do |song| %>
+	<li>
+		<%= link_to song.title, song_url(song) %>
+	</li>
+	<% end %>
+</ul>
+
+<h3>Albums</h3>
+<% @artist.albums.each do |album| %>
+<li>
+	<%= link_to album.title, album_url(album) %>
+</li>
+<% end %>
+<br>
+<%= link_to "Back to index", root_url %>

@@ -1,0 +1,38 @@
+<h1>
+	<%= @song.title %>
+</h1>
+
+<h3>
+	<%= link_to @song.artist.name, artist_url(@song.artist) %>
+</h3>
+
+<% unless @song.albums.empty? %>
+<strong>Albums:</strong>
+<ul>
+	<% @song.albums.each do |album| %>
+	<li>
+		<%= link_to album.title, album_url(album) %>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+
+<%= link_to "New annotation", new_annotation_url(@song) %><br>
+
+<pre id="lyrics">
+<%= @song.lyrics %>
+</pre>
+<h3>
+	Annotations
+</h3>
+<%= link_to "New annotation", new_annotation_url(@song) %><br>
+<ul>
+	<% @song.annotations.each do |annotation| %>
+	<% snippet = @song.lyrics.gsub(/\r/,"")[annotation.start_char..annotation.end_char] %>
+	<li>
+		<%= link_to snippet, annotation_url(annotation) %>
+	</li>
+	<% end %>
+</ul>
+
+<%= link_to "Back", root_url %>

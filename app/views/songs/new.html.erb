@@ -1,0 +1,28 @@
+<h1>New song</h1>
+<p>Transcriber: <%= current_user.username %></p>
+<br>
+<form action="<%= songs_url %>" method="post">
+<input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
+
+<label for="artist">Artist</label>
+<input type="text" name="artist[name]" id="artist_name">
+<br>
+
+<label for="album">Album</label>
+<input type="text" name="album[title]" id="album_title]">
+<br>
+
+<label for="song_title">Song Title</label>
+<input type="text" name="song[title]" id="song_title">
+<br>
+
+<label for="song_lyrics">Song Lyrics</label>
+<textarea name="song[lyrics]" id="song_lyrics"></textarea>
+<br>
+<br>
+
+<input type="submit" value="Submit Song">
+</form>
+<%= link_to "Back", root_url %>

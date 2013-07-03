@@ -1,0 +1,13 @@
+<h1><%= @album.title %></h1>
+<strong> by <%= link_to @album.artist.name, artist_url(@album.artist) %> 
+	<%= "(#{@album.year})" if @album.year %>
+</strong>
+<br>
+<ol>
+<% @album.tracks.each do |track| %>
+	<li>
+		<%= link_to track.title, song_url(track) %>
+	</li>
+<% end %>
+</ol>
+<%= link_to "Back to #{@album.artist.name}", artist_url(@album.artist) %>

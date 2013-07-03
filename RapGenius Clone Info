@@ -1,0 +1,53 @@
+RapGenius Clone
+
+Gems might need:
+Devise
+Sunspot(search?)
+Autocomplete
+Guest User
+
+
+Models:
+-Covered with Devise
+User
+Username
+Password_Digest
+E-Mail
+
+Artist
+Name
+User_ID
+
+
+Albums
+Name
+Year Released
+
+Song
+Artist_ID
+Album_ID
+Year Released
+Track_No
+
+Published - true/false
+
+Lyrics
+Body
+
+
+Annotation
+Author_ID
+Lyric Snippet
+Annotation Body
+
+
+Props (Like)
+Annotation_ID
+User_ID
+
+
+References
+Song_ID
+Alluded_Song_ID
+Body
+

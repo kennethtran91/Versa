@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  song_id: 1
+  annotator_id: 1
+  start_char: 1
+  end_char: 1
+  body: MyText
+
+two:
+  song_id: 1
+  annotator_id: 1
+  start_char: 1
+  end_char: 1
+  body: MyText

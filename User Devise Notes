@@ -1,0 +1,10 @@
+User
+
+Devise
+-Authentication with Devise
+-Look up default devise methods
+
+-Customizing the Devise URL
+-Customize the "devise_for" in the routes
+
+

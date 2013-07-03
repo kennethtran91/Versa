@@ -1,0 +1,13 @@
+<p>Hello <%= current_user.username %>!</p>
+Songs
+<br>
+<%= link_to "Add New Song", new_song_url %>
+<ul>
+<% @songs.each do |song| %>
+<li><strong>
+<%= link_to song.title, song_url(song) %>
+</strong>
+ by <%= link_to song.artist.name, artist_url(song.artist) %>
+</li>
+<% end %>
+</ul>
