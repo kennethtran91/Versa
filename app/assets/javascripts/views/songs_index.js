@@ -1,5 +1,5 @@
 Versa.Views.SongsIndex = Backbone.View.extend({
-	
+
 	template: JST['songs/index'],
 
 	render: function() {
@@ -8,4 +8,4 @@ Versa.Views.SongsIndex = Backbone.View.extend({
 		return this;
 	},
 
-})
+});

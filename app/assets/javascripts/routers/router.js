@@ -11,4 +11,4 @@ Versa.Router = Backbone.Router.extend({
 		var that = this;
 	},
 
-})
+});

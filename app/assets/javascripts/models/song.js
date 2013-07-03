@@ -1,1 +1,1 @@
-Versa.Models.Song = Backbone.RelationalModel.extend({})
+Versa.Models.Song = Backbone.RelationalModel.extend({});
