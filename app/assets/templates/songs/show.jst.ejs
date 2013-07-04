@@ -1,0 +1,44 @@
+<h1>
+	<%= song.escape('title') %>
+</h1>
+
+<h3>
+	<% var artistHref = "/artists/" + artist.id %>
+	<a href="<%= artist_href %>"><%= artist.escape('name') %></a>
+</h3>
+
+<% if (song.get('albums')) { %>
+<strong>Albums:</strong>
+<ul>
+	<% var albums = song.get('albums') %>
+	<% albums.each(function(album) { %>
+	<li>
+		<% var albumHref = "/#/albums/" + album.id %>
+		<a href="<%=albumHref%>"><%= album.escape('title') %></a>
+	</li>
+	<% }); %>
+</ul>
+<% }; %>
+
+<% var newAnnotationHref = "/#/songs/" + song.id + "/annotations/new" %>
+<a href="<%= newAnnotationHref %>">New annotation</a><br>
+
+<pre id="lyrics">
+<%= song.escape('lyrics') %>
+</pre>
+<h3>
+	Annotations
+</h3>
+<a href="<%= newAnnotationHref %>">New annotation</a><br>
+<ul>
+	<% var annotations = song.get('annotations') %>
+	<% annotations.each(function(annotation) { %>
+	<% var snippet = song.escape('lyrics').replace(/\r/g, "").substr(annotation.escape('start_char'), annotation.escape('end_char') - annotation.escape('start_char') %>
+	<li>
+		<% var annotationHref = "/#/annotations/" + annotation.id %>
+		<a href="<%= annotationHref %>"><%= snippet %></a>
+	</li>
+	<% }) %>
+</ul>
+
+<a href="/#/">Back</a>

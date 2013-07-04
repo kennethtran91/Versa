@@ -3,10 +3,12 @@ window.Versa = {
   Collections: {},
   Views: {},
   Routers: {},
+  Store: {},
   initialize: function() {
   }
 };
 
+//song show page
 Versa.highlightAnnotatedText = function() {
   var $lyrics = $('#lyrics')
   var text = $lyrics.text()
@@ -30,6 +32,7 @@ Versa.highlightAnnotatedText = function() {
   Versa.displayAnnotation();
 };
 
+//song show page
 Versa.captureSelectedText = function() {
 
   $('#lyrics').on("mousedown", function() {
@@ -58,6 +61,7 @@ Versa.captureSelectedText = function() {
   });
 };
 
+//song show page
 Versa.annotateButton = function(coords) {
   var $button = $('<button>').text('Annotate');
   var $annotateDiv = $('<div>')
@@ -86,6 +90,8 @@ Versa.annotateButton = function(coords) {
   Versa.hideAnnotateButton();
 };
 
+
+//song show page
 Versa.hideAnnotateButton = function() {
   $('body').on('click', function() {
   if ($('.annotateButton').size()) {
@@ -94,6 +100,7 @@ Versa.hideAnnotateButton = function() {
   });
 };
 
+//song show page
 Versa.popUpAnnotationForm = function(coords) {
   var $form = $('.annotateForm');
   $form.bPopup({
@@ -108,12 +115,14 @@ Versa.popUpAnnotationForm = function(coords) {
   Versa.closeAnnotationForm();
 };
 
+//song show page
 Versa.fillPopUpFormInfo = function(){
   $form = $('.annotateForm').find('form');
   $form.find('input#annotation_start_char').val(Versa.startChar);
   $form.find('input#annotation_end_char').val(Versa.endChar);
 };
 
+//song show page
 Versa.closeAnnotationForm = function() {
   $('a.closeFormLink').on('click',function(event) {
     event.preventDefault();
@@ -121,6 +130,7 @@ Versa.closeAnnotationForm = function() {
   });
 };
 
+//song show page
 Versa.displayAnnotation = function() {
   $('a.annotation').on('click', function(event) {
     console.log('something');
@@ -137,6 +147,7 @@ Versa.displayAnnotation = function() {
   Versa.vote();
 };
 
+//annotation show page
 Versa.vote = function() {
   $('button.vote').on('click', function(event) {
     event.preventDefault();
@@ -154,7 +165,11 @@ Versa.vote = function() {
 };
 
 $(document).ready(function(){
+  
   Versa.initialize();
+  Versa.authToken = $('meta[name="csrf-token"]').attr('content');
+  //Add Versa current user
+
   Versa.captureSelectedText();
 
   if ($('#lyrics').size()) {

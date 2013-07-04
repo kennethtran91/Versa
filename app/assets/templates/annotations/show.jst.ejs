@@ -1,0 +1,21 @@
+<script type="text/javascript">
+	var annotationID = <%= @annotation.id %>
+</script>
+<a class="annotateClose">x</a>
+<h3>Song: <%= song.get('artist').escape('name') %> - <%= song.escape('title') %></h3><br>
+
+<strong>Lyric Snippet:</strong><br>
+<% var snippet = song.escape('lyrics').replace(/\r/g, "").substr(annotation.escape('start_char'), annotation.escape('end_char') - annotation.escape('start_char') %>
+<pre>
+<%= snippet %>
+</pre>
+
+<strong>Annotation:</strong>
+<pre>
+<%= annotation.escape('body') %>
+</pre>
+Annotator: <%= annotation.get('annotator').escape('username') %><br>
+<strong>Rating: </strong>
+<span class="rating"><%= annotation.escape('rating') %></span>
+<button class="vote like">Like</button>
+<button class="vote dislike">Dislike</button>

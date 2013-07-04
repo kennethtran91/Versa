@@ -1,0 +1,26 @@
+<h1>New annotation</h1>
+Artist: <%= song.get('artist').escape('name') %><br>
+Song: <%= song.escape('title') %><br>
+
+<form enctype="multipart/form-data">
+<input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= Versa.authToken %>">
+
+<label for="annotation_start_char">Start Char:</label>
+<input type="text" 
+			 name="annotation[start_char]" 
+			 id="annotation_start_char"><br>
+
+<label for="annotation_end_char">End Char:</label>
+<input type="text"
+			 name="annotation[end_char]"
+			 id="annotation_end_char"><br>
+
+<label for="annotation_body">Annotation:</label>
+<textarea name="annotation[body]" id="annotation_body"></textarea>
+<input type="submit" value="Submit Annotation">
+</form>
+
+<% var songHref = "/#/songs/" + song.id %>
+<a href="<%= songHref %>">Back to song</a>

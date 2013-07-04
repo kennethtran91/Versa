@@ -8,7 +8,7 @@ Songs
 <a href="<%= song_href %>"><%= song.escape("title") %></a>
 </strong>
 <% var artist_href = '/#/artists/' + artist.id %>
-by <a href="<%= artist_href %>"><%= artist.get('name') %></a>
+by <a href="<%= artist_href %>"><%= artist.escape('name') %></a>
 </li>
 <% }) %>
 </ul>
