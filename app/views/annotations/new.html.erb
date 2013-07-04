@@ -2,7 +2,7 @@
 Artist: <%= @song.artist.name %><br>
 Song: <%= @song.title %><br>
 
-<form action="<%= annotations_url(@song) %>" method="post">
+<form action="<%= annotations_url(@song) %>" method="post" enctype="multipart/form-data">
 <input type="hidden" 
 			 name="authenticity_token" 
 			 value="<%= form_authenticity_token %>">

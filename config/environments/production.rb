@@ -64,4 +64,13 @@ Versa::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'versa-prod',
+      :access_key_id => 'AKIAI6OYN6AEP7DJTQPQ',
+      :secret_access_key => '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'
+    }
+  }
 end

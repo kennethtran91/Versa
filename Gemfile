@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'rabl'
+gem 'paperclip'
+gem 'aws-sdk'
 
 
 # Gems used only for assets and not required

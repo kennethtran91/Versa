@@ -1,12 +1,14 @@
 Songs
 <br>
+<a href='/#/songs/new'>Add New Song </a>
 <ul>
 <% songs.each(function(song) { %>
 <li><strong>
-<% var href = '/#/songs/' + song.id %>
-<a href="<%= href %>"><%= song.escape("title") %></a>
+<% var song_href = '/#/songs/' + song.id %>
+<a href="<%= song_href %>"><%= song.escape("title") %></a>
 </strong>
-by song artist here.
+<% var artist_href = '/#/artists/' + artist.id %>
+by <a href="<%= artist_href %>"><%= artist.get('name') %></a>
 </li>
 <% }) %>
 </ul>

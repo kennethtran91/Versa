@@ -1,5 +1,5 @@
 class Annotation < ActiveRecord::Base
-  attr_accessible :annotator_id, :body, :end_char, :song_id, :start_char
+  attr_accessible :annotator_id, :body, :end_char, :song_id, :start_char, :photo
 
   validates :song_id, :annotator_id, :presence => true
   validate :start_end_chars_fall_within_lyrics
@@ -12,6 +12,11 @@ class Annotation < ActiveRecord::Base
   	:class_name => "User",
   	:foreign_key => :annotator_id,
   	:inverse_of => :annotations
+
+  has_attached_file :photo, :styles => {
+  	:big => "300x300>",
+  	:small => "100x100#"
+  }
 
 	def rating
 	 	likes.where(dislike: false).count - likes.where(dislike: true).count

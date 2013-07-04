@@ -38,4 +38,14 @@ Versa::Application.configure do
 
   # If deploying to Heroku
   config.assets.initialize_on_precompile = false
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => "versa-dev",
+      :access_key_id => "AKIAI6OYN6AEP7DJTQPQ",
+      :secret_access_key => "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"
+    }
+  }
+
 end

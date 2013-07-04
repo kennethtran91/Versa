@@ -13,7 +13,7 @@ var song = <%= @song.to_json(:include => :annotations).html_safe %>
 	Artist: <%= @song.artist.name %><br>
 	Song: <%= @song.title %><br>
 
-	<form action="<%= annotations_url(@song) %>" method="post">
+	<form action="<%= annotations_url(@song) %>" method="post" enctype="multipart/form-data">
 	<input type="hidden" 
 				 name="authenticity_token" 
 				 value="<%= form_authenticity_token %>">
@@ -28,6 +28,7 @@ var song = <%= @song.to_json(:include => :annotations).html_safe %>
 
 	<label for="annotation_body">Annotation:</label>
 	<textarea name="annotation[body]" id="annotation_body"></textarea>
+	<br>
 	<input type="submit" value="Submit Annotation">
 	</form>
 
