@@ -133,6 +133,24 @@ Versa.displayAnnotation = function() {
       opacity: 0.1
     });
   });
+
+  Versa.vote();
+};
+
+Versa.vote = function() {
+  $('button.vote').on('click', function(event) {
+    event.preventDefault();
+    if ($(this).is('.like')){
+      var postUrl = "/annotations/" + annotationID + "/like";
+    } else {
+      var postUrl = "/annotations/" + annotationID + "/dislike";
+    }
+
+    $.ajax({
+      url: postUrl,
+      type: "post",
+      });
+  });  
 };
 
 $(document).ready(function(){

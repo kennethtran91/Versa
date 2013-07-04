@@ -15,4 +15,6 @@ class User < ActiveRecord::Base
   	:class_name => "Annotation",
   	:inverse_of => :annotator,
   	:foreign_key => :annotator_id
+
+  has_many :likes
 end

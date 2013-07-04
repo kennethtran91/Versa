@@ -4,12 +4,18 @@ class Annotation < ActiveRecord::Base
   validates :song_id, :annotator_id, :presence => true
   validate :start_end_chars_fall_within_lyrics
 
+  has_many :likes
+
   belongs_to :song
   
   belongs_to :annotator,
   	:class_name => "User",
   	:foreign_key => :annotator_id,
   	:inverse_of => :annotations
+
+	def rating
+	 	likes.where(dislike: false).count - likes.where(dislike: true).count
+	end
 
  private
 

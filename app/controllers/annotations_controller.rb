@@ -27,6 +27,22 @@ class AnnotationsController < ApplicationController
 		end
 	end
 
+	def like
+		annotation = Annotation.find_by_id(params[:id])
+		@like = annotation.likes.new(:user_id => current_user.id)
+		@like.dislike = false
+		@like.save!
+		render :json => @like
+	end
+
+	def dislike
+		annotation = Annotation.find_by_id(params[:id])
+		@like = annotation.likes.new(:user_id => current_user.id)
+		@like.dislike = true
+		@like.save!
+		render :json => @like
+	end
+
 	def edit
 	end
 
