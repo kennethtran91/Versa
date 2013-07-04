@@ -3,6 +3,9 @@ var song = <%= @song.to_json(:include => :annotations).html_safe %>
 // console.log(song.artist)
 </script>
 
+<div class='annotationDiv'>
+</div>
+
 <div class='annotateForm'>
 	<a class="annotateClose">x</a>
 

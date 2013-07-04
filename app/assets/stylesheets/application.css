@@ -33,3 +33,10 @@
 .highlight {
 	background-color: #FFFF88;
 }
+
+.annotationDiv {
+	background-color: white;
+	position: absolute;
+	display: none;
+	width: 400px;
+}

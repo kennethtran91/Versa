@@ -17,51 +17,43 @@ Versa.highlightAnnotatedText = function() {
     var substr = text.substr(start_char, end_char - start_char);
     
     $lyrics.highlight(substr);
-
     $('.highlight').last().wrap(function() {
       var id = annotation.id;
       var url = "/annotations/" + id;
-      var $link = $('<a>').attr('href', url);
+      var $link = $('<a>').addClass('annotation').attr('href', url).attr('data-id', id);
 
       return $link;
 
     });
   });
+
+  Versa.displayAnnotation();
 };
 
 Versa.captureSelectedText = function() {
 
   $('#lyrics').on("mousedown", function() {
-
     $(this).on("mouseup", function(event) {
+      event.stopPropagation();
+
       var body = $(this).text();
-      console.log(body);
-      var range = window.getSelection().getRangeAt(0);
-      console.log(range);
-    if (range.endOffset - range.startOffset) {
-      if (range.endOffset - range.startOffset > 0) {
-      Versa.startChar = range.startOffset;
-      Versa.endChar = range.endOffset;
-    } else if (range.startOffset - range.endOffset > 0) {
-      Versa.startChar = range.endOffset;
-      Versa.endChar = range.startOffset;
-    }
-     
-      range.collapse(false);
-      var dummy = document.createElement("span");
-      range.insertNode(dummy);
-      var rect = dummy.getBoundingClientRect();
-      var substr = body.substr(Versa.startChar, Versa.endChar - Versa.startChar);
       
-      console.log(Versa.startChar, Versa.endChar);
-      console.log(substr);
+      var range = window.getSelection().getRangeAt(0);
+      if (range.endOffset - range.startOffset) {
+        range.collapse(false);
+        var dummy = document.createElement("span");
+        range.insertNode(dummy);
+        var rect = dummy.getBoundingClientRect();
+        var x = rect.right + window.scrollX;
+        var y = rect.top + window.scrollY;
+        dummy.parentNode.removeChild(dummy);
+        
+        var substr = window.getSelection().toString();
+        Versa.startChar = body.indexOf(substr);
+        Versa.endChar = Versa.startChar + substr.length;
 
-      var x = rect.right + window.scrollX;
-      var y = rect.top + window.scrollY;
-      dummy.parentNode.removeChild(dummy);
-
-      Versa.annotateButton([x,y]);
-    }
+        Versa.annotateButton([x,y]);
+      };
     });
   });
 };
@@ -126,6 +118,20 @@ Versa.closeAnnotationForm = function() {
   $('a.closeFormLink').on('click',function(event) {
     event.preventDefault();
     $('.annotateForm').bPopup().close();
+  });
+};
+
+Versa.displayAnnotation = function() {
+  $('a.annotation').on('click', function(event) {
+    console.log('something');
+    event.preventDefault();
+    event.stopPropagation();
+    var id = $(this).data('id');
+    $('.annotationDiv').bPopup({
+      loadUrl: '/annotations/' + id + '.html',
+      closeClass: 'annotateClose',
+      opacity: 0.1
+    });
   });
 };
 
