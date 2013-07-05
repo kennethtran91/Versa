@@ -1,14 +1,15 @@
 class SongsController < ApplicationController
 include SongHelper
+	respond_to :json
 
 	def index
-		@songs = Song.all
-		render :index
+		@songs = Song.includes(:artist).all
+		render :json => @songs.to_json(:include => [:artist])
 	end
 
 	def show
 		@song = Song.find_by_id(params[:id])
-		render :show
+		render :json => @song.to_json(:include => [:artist, :albums, :annotations])
 	end
 
 	def new

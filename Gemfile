@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'rabl'
+gem 'oj'
 gem 'paperclip'
 gem 'aws-sdk'
 

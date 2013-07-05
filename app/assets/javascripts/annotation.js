@@ -1,1 +1,4 @@
-Versa.Models.Annotation = Backbone.RelationalModel.extend({});
+Versa.Models.Annotation = Backbone.RelationalModel.extend({
+	urlRoot: "/annotations/",
+
+});

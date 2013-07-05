@@ -11,8 +11,7 @@ class Like < ActiveRecord::Base
   private
   def user_cant_vote_twice
   	like_exists = Like.where(:user_id => self.user_id, 
-  													 :annotation_id => self.annotation_id,
-  													 :dislike => self.dislike).first
+  													 :annotation_id => self.annotation_id).first
   	if like_exists
   		errors[:double_vote] << "User can't vote twice."
   	end

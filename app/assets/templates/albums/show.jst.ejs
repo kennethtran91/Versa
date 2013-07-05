@@ -2,7 +2,6 @@
 <% var artist = album.get('artist') %>
 <% var artistHref = "/#/artists/" + artist.id %>
 <strong> by <a href="<%= artistHref %>"><%= artist.escape('name') %></a>
-	<%= "(#{@album.year})" if @album.year %>
 	<% if (album.escape('year')) { %>
 	"(<%= album.escape('year') %>)"
 	<% } %>

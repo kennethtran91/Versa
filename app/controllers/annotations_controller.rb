@@ -3,7 +3,7 @@ class AnnotationsController < ApplicationController
 	def show
 		@annotation = Annotation.find(params[:id])
 		@song = @annotation.song
-		render :show
+		render :json => @annotation
 	end
 
 	def new
@@ -13,17 +13,15 @@ class AnnotationsController < ApplicationController
 	end
 
 	def create
-		@song = Song.find(params[:id])
-		@annotation = @song.annotations.new(params[:annotation])
-		@annotation.annotator = current_user
+		@annotation = current_user.annotations.new(params[:annotation])
 
 		if @annotation.save
 			notices << "Successfully created annotation."
-			redirect_to annotation_url(@annotation)
+			render :json => @annotation
 		else
 			alerts << "Failed to create annotation."
 			alerts << @annotation.errors.full_messages
-			render :new
+			render :json => @annotation
 		end
 	end
 
@@ -32,7 +30,7 @@ class AnnotationsController < ApplicationController
 		@like = annotation.likes.new(:user_id => current_user.id)
 		@like.dislike = false
 		@like.save!
-		render :json => @like
+		render :json => @annotation
 	end
 
 	def dislike
@@ -40,7 +38,7 @@ class AnnotationsController < ApplicationController
 		@like = annotation.likes.new(:user_id => current_user.id)
 		@like.dislike = true
 		@like.save!
-		render :json => @like
+		render :json => @annotation
 	end
 
 	def edit

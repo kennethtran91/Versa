@@ -7,7 +7,7 @@ Versa.Models.Artist = Backbone.RelationalModel.extend({
 		reverseRelation: {
 			key: 'artist',
 			keySource: 'artist_id',
-			includeInJSON: "id"
+			includeInJSON: "id",
 		}
 	}]
 });

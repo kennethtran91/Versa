@@ -18,6 +18,13 @@ class Annotation < ActiveRecord::Base
   	:small => "100x100#"
   }
 
+  def as_json(options = {})
+    json = super(options)
+    json[:rating] = self.rating
+    json[:annotator] = self.annotator
+    json
+  end
+
 	def rating
 	 	likes.where(dislike: false).count - likes.where(dislike: true).count
 	end

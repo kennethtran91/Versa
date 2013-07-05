@@ -4,7 +4,7 @@ Versa::Application.routes.draw do
 
   resources :albums, :only => [:show]
 	resources :artists, :only => [:show]
-  resources :annotations, :only => [:show, :edit, :update, :destroy] do
+  resources :annotations do
     member do
       post 'like'
       post 'dislike'
@@ -15,5 +15,6 @@ Versa::Application.routes.draw do
   		resources :annotations, :only => [:new, :create]
   	end
   end
+  resources :users, :only=> [:index, :show]
 
 end

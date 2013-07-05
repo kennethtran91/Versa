@@ -7,8 +7,8 @@ Versa.Models.Song = Backbone.RelationalModel.extend({
 		includeInJSON: false,
 		reverseCollection: {
 			key: "song",
-			keySource: "song_id",
-			includeInJSON: "id"
+			keySource: "song",
+			includeInJSON: false
 		}
 	},
 	
@@ -21,7 +21,7 @@ Versa.Models.Song = Backbone.RelationalModel.extend({
 		reverseCollection: {
 			key: "track",
 			keySource: "track_id",
-			includeInJSON: "id"
+			includeInJSON: false
 		}
 	}]
 });

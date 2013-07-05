@@ -44,3 +44,13 @@
 .hidden {
 	visibility: hidden;
 }
+
+#side_nav {
+	float: left;
+	width: 200px;
+}
+
+#content {
+	float: left;
+	width: 700px;
+}
