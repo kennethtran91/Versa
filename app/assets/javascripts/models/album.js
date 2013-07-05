@@ -1,14 +1,19 @@
 Versa.Models.Album = Backbone.RelationalModel.extend({
 	relations: [{
 		type: 'HasMany',
-		key: 'albumTracks',
+		key: 'album_tracks',
 		relatedModel: 'Versa.Models.AlbumTrack',
 		collectionType: 'Versa.Collections.AlbumTracks',
 		includeInJSON: false,
-		reverseCollection: {
-			key: "album",
-			keySource: "album_id",
-			includeInJSON: "id"
-		}
-	}]
+	},
+	{
+		type: 'HasOne',
+		key: 'artist',
+		keySource: 'artist_id',
+		relatedModel: 'Versa.Models.Artist',
+		collectionType: 'Versa.Collections.Artists',
+		includeInJSON: false,
+	}],
+
+	urlRoot: "/albums/",
 });

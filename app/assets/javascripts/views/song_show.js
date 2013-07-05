@@ -39,8 +39,6 @@ Versa.Views.SongShow = Backbone.View.extend({
 		var that = this;
 		var $lyrics = $('#lyrics');
 		var text = $lyrics.text();
-
-		console.log(that.model.get('annotations'));
 		that.model.get('annotations').each(function(annotation) {
 			var start_char = annotation.get('start_char');
 			var end_char = annotation.get('end_char');

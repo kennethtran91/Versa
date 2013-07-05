@@ -9,5 +9,19 @@ Versa.Models.Artist = Backbone.RelationalModel.extend({
 			keySource: 'artist_id',
 			includeInJSON: "id",
 		}
-	}]
+	},
+	{
+		type: Backbone.HasMany,
+		key: 'albums',
+		keySource: 'albums',
+		relatedModel: 'Versa.Models.Album',
+		collectionType: 'Versa.Collections.Albums',
+		// reverseRelation: {
+		// 	key: 'artist',
+		// 	keySource: 'artist_id',
+		// 	includeInJSON: false
+		// }
+	}],
+
+	urlRoot: "/artists/",
 });

@@ -8,7 +8,7 @@
 </strong>
 <br>
 <ol>
-<% album.tracks.each(function (track) { %>
+<% _(tracks).each(function (track) { %>
 	<li>
 		<% var trackHref = "/#/songs/" + track.id %>
 		<a href="<%= trackHref %>"><%= track.escape('title') %></a>

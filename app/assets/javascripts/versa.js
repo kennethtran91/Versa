@@ -20,7 +20,6 @@ $(document).ready(function(){
   
   Versa.initialize();
   Versa.Store.authToken = $('meta[name="csrf-token"]').attr('content');
-  //Add Versa current user
 
   // Versa.captureSelectedText();
 

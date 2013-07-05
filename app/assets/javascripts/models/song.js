@@ -14,14 +14,10 @@ Versa.Models.Song = Backbone.RelationalModel.extend({
 	
 	{
 		type: 'HasMany',
-		key: 'albumTracks',
+		key: 'album_tracks',
 		relatedModel: 'Versa.Models.AlbumTrack',
 		collectionType: 'Versa.Collections.AlbumTracks',
 		includeInJSON: false,
-		reverseCollection: {
-			key: "track",
-			keySource: "track_id",
-			includeInJSON: false
-		}
-	}]
+	}],
+
 });

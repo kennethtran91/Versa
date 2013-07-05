@@ -9,7 +9,7 @@ include SongHelper
 
 	def show
 		@song = Song.find_by_id(params[:id])
-		render :json => @song.to_json(:include => [:artist, :albums, :annotations])
+		render :json => @song.to_json(:include => [:artist, :albums, :annotations, :album_tracks])
 	end
 
 	def new
@@ -30,10 +30,10 @@ include SongHelper
 		if @song.save
 			@album.save
 			notices << "Song created successfully."
-			redirect_to song_url(@song)
+			render :json => @song.to_json(:include => [:artist, :albums, :annotations, :album_tracks])
 		else
 			alerts << @song.errors.full_messages
-			render :new
+			render :json => @song.errors.full_messages
 		end
 
 	end
