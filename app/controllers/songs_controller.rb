@@ -38,6 +38,14 @@ include SongHelper
 
 	end
 
+	def search
+		@search = Song.search(:include => [:artist]) do
+			keywords(params[:q]) 
+		end
+		@songs = @search.results
+		render :json => @songs.to_json(:include => [:artist])
+	end
+
 	def edit
 		@song = Song.find_by_id(params[:id])
 		render :edit

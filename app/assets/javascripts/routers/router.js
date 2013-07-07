@@ -17,7 +17,7 @@ Versa.Router = Backbone.Router.extend({
 		var songList = new Versa.Views.SongsIndex({
 			collection: Versa.Store.songs,
 		});
-		$('#side_nav').html(songList.render().el);
+		$('#side_index').html(songList.render().el);
 	},
 
 	newSong: function() {

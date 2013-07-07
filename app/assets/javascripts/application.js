@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializeJSON.min
+//= require select2
 //= require underscore
 //= require backbone
 //= require backbone-relational

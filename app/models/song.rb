@@ -15,4 +15,11 @@ class Song < ActiveRecord::Base
 
   validates :title, :lyrics, :presence => true
 
+  searchable do
+    text :title
+    text :artist do
+      artist.name
+    end
+  end
+
 end

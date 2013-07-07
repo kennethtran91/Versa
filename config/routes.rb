@@ -3,7 +3,11 @@ Versa::Application.routes.draw do
   devise_for :users
 
   resources :albums, :only => [:show]
-	resources :artists, :only => [:show]
+	resources :artists, :only => [:show] do
+    collection do
+      get 'search'
+    end
+  end
   resources :annotations do
     member do
       post 'like'
@@ -11,6 +15,9 @@ Versa::Application.routes.draw do
     end
   end
   resources :songs do
+    collection do
+      get 'search'
+    end
   	member do
   		resources :annotations, :only => [:new, :create]
   	end
