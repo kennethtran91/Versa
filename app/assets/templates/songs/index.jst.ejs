@@ -1,15 +1,21 @@
-Songs
-<br>
-<a href='/#/songs/new'>Add New Song </a>
-<ul>
+
+<ul class="nav nav-list">
+<li class="nav-header">Songs</li>
+<li>
+<div id="search_div">
+</div>
+</li>
+<li><a href='/#/songs/new'>Add New Song </a></li>
+<li class="divider"></li>
 <% songs.each(function(song) { %>
-<li><strong>
+<li>
 <% var song_href = '/#/songs/' + song.id %>
-<a href="<%= song_href %>"><%= song.escape("title") %></a>
-</strong>
+<span>
+<strong><a href="<%= song_href %>"><%= song.escape("title") %></a></strong>
 <% var artist = song.get('artist') %>
-<% var artist_href = '/#/artists/' + artist.id %><br>
-<small>by <a href="<%= artist_href %>"><%= artist.escape('name') %></a></small>
+<% var artist_href = '/#/artists/' + artist.id %>
+<small><a href="<%= artist_href %>"> (<%= artist.escape('name') %>)</a></small>
+</span>
 </li>
 <% }) %>
 </ul>

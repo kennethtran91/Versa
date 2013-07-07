@@ -63,6 +63,7 @@ Versa.Views.SongShow = Backbone.View.extend({
 		var annotationShow = new Versa.Views.AnnotationShow({model: annotation});
 		$(".annotationDiv").html(annotationShow.render().$el);
 		$(".annotationDiv").bPopup({
+			zIndex: 1,
 			closeClass: 'annotateClose',
 			opacity: 0.1,
 			follow: false,
@@ -108,12 +109,12 @@ Versa.Views.SongShow = Backbone.View.extend({
 	},
 
 	annotateButton: function(coords) {
-	  var $button = $('<button>').text('Annotate');
+	  var $button = $('<a>').text('Annotate').attr({"class": "btn btn-small btn-block btn-warning", "href": "#"});
 	  var $annotateDiv = $('<div>')
-	                    .addClass('annotateButton')
+	                    .attr({'class':'annotateButton'})
 	                    .css({
-	                      'left': coords[0] + 'px',
-	                      'top': coords[1] + 'px'
+	                      'left': coords[0] - 80 + 'px',
+	                      'top': coords[1] - 38 + 'px'
 	                    })
 	                    .append($button);
 
@@ -154,6 +155,7 @@ Versa.Views.SongShow = Backbone.View.extend({
 	  $form.bPopup({
 	    follow: false,
 	    modalColor: '#FFF',
+	    zIndex: 1,
 	    opacity: 0,
 	    positionStyle: 'absolute',
 	    position: [coords[0] + 50 + 'px', 'auto'],

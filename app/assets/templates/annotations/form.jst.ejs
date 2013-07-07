@@ -1,7 +1,5 @@
 <a class="annotateClose">x</a>
-<h1>New annotation</h1>
-Artist: <%= song.get('artist').escape('name') %><br>
-Song: <%= song.escape('title') %><br>
+<h4>New annotation</h4>
 
 <form enctype="multipart/form-data">
 <input type="hidden" 
@@ -17,7 +15,7 @@ Song: <%= song.escape('title') %><br>
 			 id="annotation_end_char">
 
 <label for="annotation_body">Annotation:</label>
-<textarea name="annotation[body]" id="annotation_body"></textarea>
+<textarea rows="5" name="annotation[body]" id="annotation_body"></textarea>
 <br>
 <input type="submit" value="Submit Annotation">
 </form>

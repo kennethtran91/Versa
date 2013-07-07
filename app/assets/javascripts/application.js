@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery.serializeJSON.min
 //= require select2
 //= require underscore
@@ -25,4 +26,5 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
+//= require_tree ./flatui-js
 //= require_tree .

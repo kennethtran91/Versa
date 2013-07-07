@@ -73,4 +73,8 @@ Versa::Application.configure do
       :secret_access_key => 'cxgORlS/vUyVS273lZhb+z3dbUm+OmHu0I4fN3DV'
     }
   }
+
+  config.assets.paths << Rails.root.join('app','assets','fonts')
+
+  config.assets.precompile += %w(.svg .eot .woff .ttf )
 end

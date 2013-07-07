@@ -21,7 +21,6 @@
 	background-color: white;
 	position: absolute;
 	display: none;
-	width: 400px;
 }
 
 .annotateClose {
@@ -39,14 +38,13 @@
 	background-color: white;
 	position: absolute;
 	display: none;
-	width: 400px;
 }
 
 .hidden {
 	visibility: hidden;
 }
 
-#side_nav {
+/*#side_nav {
 	float: left;
 	width: 200px;
 }
@@ -54,4 +52,4 @@
 #content {
 	float: left;
 	width: 700px;
-}
+}*/

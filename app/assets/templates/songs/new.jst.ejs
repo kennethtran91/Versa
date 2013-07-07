@@ -1,3 +1,4 @@
+<div class="span9">
 <h1>New Song</h1>
 <p>Transcriber: <%= Versa.current_user.username %></p>
 <br>
@@ -6,23 +7,25 @@
 			 name="authenticity_token" 
 			 value="<%= Versa.authToken %>">
 
+<div class="control-group small">
 <label for="artist">Artist</label>
-<input type="text" name="artist[name]" id="artist_name">
+<input type="text" class="span3" name="artist[name]" id="artist_name">
 <br>
 
 <label for="album">Album</label>
-<input type="text" name="album[title]" id="album_title]">
+<input type="text" class="span3" name="album[title]" id="album_title]">
 <br>
 
 <label for="song_title">Song Title</label>
-<input type="text" name="song[title]" id="song_title">
+<input type="text" class="span3" name="song[title]" id="song_title">
 <br>
-
+</div>
 <label for="song_lyrics">Song Lyrics</label>
-<textarea name="song[lyrics]" id="song_lyrics"></textarea>
+<textarea rows="5" name="song[lyrics]" id="song_lyrics"></textarea>
 <br>
 <br>
 
 <input type="submit" value="Submit Song">
 </form>
 <a href="/#">Back</a>
+</div>

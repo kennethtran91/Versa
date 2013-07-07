@@ -2,12 +2,11 @@
 <script type="text/javascript">
 	Versa.current_user = <%= current_user.to_json.html_safe %>
 </script>
-<div id="side_nav">
-	<div id="search_div">
-		<input type="text" id="search_input">
+<div class="row-fluid">
+	<div class="span3">
+		<div class="sidebar-nav-fixed" id="side_nav">
+		</div>
 	</div>
-	<div id="side_index">
+	<div class="span9" id="content">
 	</div>
-</div>
-<div id="content">
 </div>

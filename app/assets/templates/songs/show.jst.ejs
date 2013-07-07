@@ -1,13 +1,13 @@
-<div class="annotationDiv">
+<div class="annotationDiv alert alert-info">
 </div>
-<h1>
-	<%= song.escape('title') %>
-</h1>
-
 <h3>
+	<%= song.escape('title') %>
+</h3>
+
+<h4>
 	<% var artistHref = "#/artists/" + artist.id %>
 	<a href="<%= artistHref %>"><%= artist.escape('name') %></a>
-</h3>
+</h4>
 
 <% if (albums) { %>
 <strong>Albums:</strong>

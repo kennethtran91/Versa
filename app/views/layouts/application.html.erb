@@ -7,11 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
+<% if notice %>
+<div class="notice"><%= notice %></div>
+<% end %>
+<% if alert %>
+<div class="alert"><%= alert %></div>
+<% end %>
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="brand" href="#">Versa</a>
+			<ul class="nav">
+				<li>Artists</li>
+				<li>Songs</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
 <%= yield %>
-
+</div>
+<div class="navbar navbar-fixed-bottom bottom-menu bottom-menu-inverse">
+	<div class="container-fluid">
+	</div>
+</div>
 </body>
 </html>
