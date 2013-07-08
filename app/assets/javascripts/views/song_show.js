@@ -17,7 +17,7 @@ Versa.Views.SongShow = Backbone.View.extend({
 		"click a.annotation": "displayAnnotation",
 		"mouseup #lyrics": "captureSelectedText",
 		"click .annotateButton": "showAnnotationForm",
-		"click": "hideAnnotateButton",
+		// "click": "hideAnnotateButton",
 		"annotationCreated": "displayCreatedAnnotation"
 	},
 
@@ -92,6 +92,8 @@ Versa.Views.SongShow = Backbone.View.extend({
 
 		var range = window.getSelection().getRangeAt(0);
 		if (range.endOffset - range.startOffset) {
+			console.log(range.endOffset - range.startOffset);
+			console.log("show the button");
 			range.collapse(false);
 			var dummy = document.createElement("span");
 			range.insertNode(dummy);
@@ -106,7 +108,11 @@ Versa.Views.SongShow = Backbone.View.extend({
 			Versa.Store.endChar = Versa.Store.startChar + substr.length;
 
 			this.annotateButton(this.coords);
-		};
+		} else {
+			console.log(range.endOffset - range.startOffset);
+			console.log("remove the button");
+			$('.annotateButton').remove();
+		}
 	},
 
 	annotateButton: function(coords) {
@@ -132,10 +138,9 @@ Versa.Views.SongShow = Backbone.View.extend({
 
 	hideAnnotateButton: function(event) {
 		if (event.target.id != ".annotateButton") {
-			console.log($('.annotateButton').find('button'));
-			console.log($('.annotateButton').find('button').size());
 			if ($('.annotateButton').size()) {
-		    $('.annotateButton').remove();
+				console.log($('.annotateButton').size())
+		    // $('.annotateButton').remove();
 		  };
 		};
 	},	
