@@ -17,6 +17,7 @@ Versa.Models.User = Backbone.RelationalModel.extend({
 		type: Backbone.HasMany,
 		key: 'followings',
 		keySource: 'followings',
+		autoFetch: true,
 		relatedModel: 'Versa.Models.Following',
 		collectionType: 'Versa.Collections.Followings',
 		includeInJSON: false
@@ -25,6 +26,7 @@ Versa.Models.User = Backbone.RelationalModel.extend({
 		type: Backbone.HasMany,
 		key: 'follows',
 		keySource: 'follows',
+		autoFetch: true,
 		relatedModel: 'Versa.Models.Following',
 		collectionType: 'Versa.Collections.Followings',
 		includeInJSON: false

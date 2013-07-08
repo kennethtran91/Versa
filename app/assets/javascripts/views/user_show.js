@@ -1,7 +1,7 @@
 Versa.Views.UserShow = Backbone.View.extend({
 
 	initialize: function() {
-		this.listenTo(this.model, "change", this.render);
+		this.listenTo(this.model, "sync", this.render);
 	},
 
 	template: JST['users/show'],
@@ -25,9 +25,9 @@ Versa.Views.UserShow = Backbone.View.extend({
 			url: "/users/" + id + "/followings",
 			type: "post",
 			success: function(data) {
-				that.render();
-			}
-		}) 
+				that.model.fetch();
+			},
+		}); 
 	},
 
 	unfollowUser: function() {
@@ -38,8 +38,8 @@ Versa.Views.UserShow = Backbone.View.extend({
 			url: "/users/" + id + "/followings",
 			type: "delete",
 			success: function(data) {
-				that.render();
-			}
+				that.model.fetch();
+			},
 		}) 
 	},
 	
