@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by_id(params[:id])
-		render :json => @user
+		@user = User.includes(:followings, :follows, :annotations).find_by_id(params[:id])
+		render :json => @user.to_json(:include => [:followings, :follows, :annotations])
 	end
 
 end

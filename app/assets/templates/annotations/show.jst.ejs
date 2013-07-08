@@ -1,11 +1,10 @@
-
 <a class="annotateClose">x</a>
-
 <strong>Annotation:</strong>
 <pre>
 <%= annotation.escape('body') %>
 </pre>
-Annotator: <%= annotation.get('annotator').username %><br>
+<% var annotator = annotation.get('annotator') %>
+Annotator: <a class="userLink" href="#/users/<%=annotator.id%>"><%= annotator.escape('username') %></a><br>
 <strong>Rating: </strong>
 <span class="rating"><%= annotation.escape('rating') %></span>
 <button class="vote like">Like</button>

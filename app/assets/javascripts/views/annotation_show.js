@@ -12,6 +12,7 @@ Versa.Views.AnnotationShow = Backbone.View.extend({
 
 	events: {
 		"click button.vote" : "vote",
+		"click .userLink" : "closeAnnotation",
 	},
 
 	render: function() {
@@ -35,6 +36,10 @@ Versa.Views.AnnotationShow = Backbone.View.extend({
 				alert("You can't vote twice.");
 			}
 		})
+	},
+
+	closeAnnotation: function(event) {
+		$('.annotationDiv').bPopup().close();
 	},
 
 });

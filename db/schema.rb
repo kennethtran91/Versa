@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704045820) do
+ActiveRecord::Schema.define(:version => 20130708161247) do
 
   create_table "album_tracks", :force => true do |t|
     t.integer  "album_id"
@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(:version => 20130704045820) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "followings", :force => true do |t|
+    t.integer  "followed_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "likes", :force => true do |t|

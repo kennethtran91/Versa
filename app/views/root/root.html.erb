@@ -1,6 +1,6 @@
 
 <script type="text/javascript">
-	Versa.current_user = <%= current_user.to_json.html_safe %>
+	Versa.Store.current_user = new Versa.Models.User(<%= current_user.to_json(:include => [:follows,:followings]).html_safe %>);
 </script>
 <div class="row-fluid">
 	<div class="span3">

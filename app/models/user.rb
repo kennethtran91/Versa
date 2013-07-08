@@ -17,4 +17,22 @@ class User < ActiveRecord::Base
   	:foreign_key => :annotator_id
 
   has_many :likes
+
+  has_many :followings,
+    :class_name => "Following",
+    :foreign_key => :followed_id
+
+  has_many :followers,
+    :through => :followings,
+    :source => :follower
+
+  has_many :follows,
+    :class_name => "Following",
+    :foreign_key => :follower_id
+
+  has_many :followed_users,
+    :through => :follows,
+    :source => :followed
+
+
 end

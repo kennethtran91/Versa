@@ -10,6 +10,7 @@ Versa.Router = Backbone.Router.extend({
 		"songs/:id": "showSong",
 		"artists/:id": "showArtist",
 		"albums/:id": "showAlbum",
+		"users/:id": "showUser",
 	},
 
 	listSongs: function() {
@@ -53,11 +54,21 @@ Versa.Router = Backbone.Router.extend({
 	showAlbum: function(id) {
 		var that = this;
 		Versa.Store.album = Versa.Models.Album.findOrCreate({id: id});
-		console.log(Versa.Store.album);
 		Versa.Store.album.fetch({
 			success: function() {
 				var albumShow = new Versa.Views.AlbumShow({ model: Versa.Store.album });
 				that._swapView(albumShow);
+			}
+		})
+	},
+
+	showUser: function(id) {
+		var that = this;
+		Versa.Store.user = Versa.Models.User.findOrCreate({id: id});
+		Versa.Store.user.fetch({
+			success: function() {
+				var userShow = new Versa.Views.UserShow({model: Versa.Store.user});
+				that._swapView(userShow);
 			}
 		})
 	},

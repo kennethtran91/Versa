@@ -1,6 +1,6 @@
 <div class="span9">
 <h1>New Song</h1>
-<p>Transcriber: <%= Versa.current_user.username %></p>
+<p>Transcriber: <%= Versa.Store.current_user.escape('username') %></p>
 <br>
 <form class="new-song">
 <input type="hidden" 

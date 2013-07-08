@@ -1,0 +1,58 @@
+<div class="row">
+	
+	<div class="span6">
+		<h5>User: <%= user.escape('username') %></h5>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span5 offset1">
+		<img src="<%=user.escape('avatar_url')%>"></img>
+	</div>
+	<div class="span3">
+		<a href="#" class="btn btn-block btn-warning follow-user">Follow</a><br>
+		<a href="#" class="btn btn-block btn-warning unfollow-user">Unfollow</a>
+	</div>
+</div>
+
+	<div class="span6">
+		<h6>Annotations</h6>
+		<ul>
+		<% user.get('annotations').each(function(annotation) { %>
+			<% var song = annotation.get('song') %>
+			<% var lyric_snippet = song.escape('lyrics').substr(annotation.get('start_char'), annotation.get('end_char') - annotation.get('start_char')) %>
+			<ul class="nav nav-list nav-list-vivid">
+				<br>
+			<li><strong>" <%= lyric_snippet %> "</strong></li>
+			<li class="pull-right"><small><%= song.get('artist').escape('name') %> - <%= song.escape('title') %></small></li>
+			<br>
+			<li class="divider"></li>
+			<li><strong>Annotation</strong><br> <%= annotation.escape('body') %></li>
+			</ul>
+			<br>
+		<% }) %>
+		</ul>
+	</div>
+
+	<div class="span3">
+		<h6>Followers</h6>
+		<ul>
+		<% var followers = [] %>
+		<% user.get('followings').each(function (following) { %>
+		<%	followers.push(following.get('follower')) %>
+		<%	}) %>
+		<% _(followers).each(function (follower) { %>
+		<li><a href="#/users/<%=follower.id%>">	<%= follower.escape('username') %> </li></a>
+		<%	}) %>
+		</ul>
+		<h6>Following</h6>
+		<ul>
+		<% var followeds = [] %>
+		<% user.get('follows').each(function (followed) { %>
+		<%	followeds.push(followed.get('followed')) %>
+		<%	}) %>
+		<% _(followeds).each(function (followed) { %>
+		<li><a href="#/users/<%=followed.id%>">	<%= followed.escape('username') %> </li></a>
+		<%	}) %>
+		</ul>
+	</div>
+</div>

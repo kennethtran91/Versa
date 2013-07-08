@@ -14,6 +14,7 @@ Versa::Application.routes.draw do
       post 'dislike'
     end
   end
+
   resources :songs do
     collection do
       get 'search'
@@ -22,6 +23,15 @@ Versa::Application.routes.draw do
   		resources :annotations, :only => [:new, :create]
   	end
   end
-  resources :users, :only=> [:index, :show]
+
+  resources :users, :only=> [:index, :show] do
+    member do
+      resources :followings, :only => :create do
+        collection do
+          delete 'destroy'
+        end
+      end
+    end
+  end
 
 end
