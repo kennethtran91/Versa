@@ -63,6 +63,7 @@ Versa.Views.SongShow = Backbone.View.extend({
 		var annotationShow = new Versa.Views.AnnotationShow({model: annotation});
 		$(".annotationDiv").html(annotationShow.render().$el);
 		$(".annotationDiv").bPopup({
+			position: ['65%', 'auto'],
 			zIndex: 1,
 			closeClass: 'annotateClose',
 			opacity: 0.1,
