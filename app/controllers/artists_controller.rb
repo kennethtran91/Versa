@@ -3,6 +3,7 @@ class ArtistsController < ApplicationController
 
 	def show
 		@artist = Artist.find_by_id(params[:id])
+		respond_to :json
 	end
 	
 end
