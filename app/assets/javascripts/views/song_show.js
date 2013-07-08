@@ -17,7 +17,6 @@ Versa.Views.SongShow = Backbone.View.extend({
 		"click a.annotation": "displayAnnotation",
 		"mouseup #lyrics": "captureSelectedText",
 		"click .annotateButton": "showAnnotationForm",
-		// "click": "hideAnnotateButton",
 		"annotationCreated": "displayCreatedAnnotation"
 	},
 

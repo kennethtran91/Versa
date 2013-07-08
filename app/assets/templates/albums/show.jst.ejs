@@ -1,4 +1,9 @@
 <h1><%= album.escape('title') %></h1>
+<% if (album.get('image_url')) { %>
+	<img src="<%= album.escape('image_url') %>"></img>
+<% } %>
+<br>
+<br>
 <% var artist = album.get('artist') %>
 <% var artistHref = "/#/artists/" + artist.id %>
 <strong> by <a href="<%= artistHref %>"><%= artist.escape('name') %></a>

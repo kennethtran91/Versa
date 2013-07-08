@@ -6419,3 +6419,8 @@ pre {
   font-size: 14px;
   line-height: 1.5;
 }
+
+img {
+  max-width: 200px;
+  height: auto;
+}

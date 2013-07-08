@@ -1,5 +1,5 @@
 object @artist
-attributes :avatar_url, :bio, :name, :user_id
+attributes :id, :avatar_url, :bio, :name, :user_id
 
 child :songs do
 	attributes :id, :title

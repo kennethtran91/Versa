@@ -1,8 +1,13 @@
 <h1><%= artist.escape('name') %></h1>
+<% if (artist.get('avatar_url')) { %>
+	<img src='<%= artist.escape('avatar_url') %>' style="width: 50%"></img>
+<% } %>
 <% if (artist.get('bio')) { %>
+	<h3>Bio</h3>
 	<%= artist.escape('bio') %>
 <% } %>
-
+<br>
+<br>
 <h3>Songs</h3>
 <% songs = artist.get('songs').sortBy("title") %>
 <ul>
@@ -21,4 +26,5 @@
 		<a href="<%= albumHref %>"><%= album.escape('title') %></a>
 </li>
 <% }) %>
+<br>
 <br>

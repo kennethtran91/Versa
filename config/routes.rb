@@ -3,7 +3,7 @@ Versa::Application.routes.draw do
   devise_for :users
 
   resources :albums, :only => [:show]
-	resources :artists, :only => [:show] do
+	resources :artists, :only => [:index, :show] do
     collection do
       get 'search'
     end

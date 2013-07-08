@@ -11,7 +11,7 @@ Versa.Views.AnnotationShow = Backbone.View.extend({
 	template: JST['annotations/show'],
 
 	events: {
-		"click button.vote" : "vote",
+		"click a.vote" : "vote",
 		"click .userLink" : "closeAnnotation",
 	},
 
