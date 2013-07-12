@@ -1,5 +1,5 @@
 class Annotation < ActiveRecord::Base
-  attr_accessible :annotator_id, :body, :end_char, :song_id, :start_char, :photo
+  attr_accessible :annotator_id, :body, :end_char, :song_id, :start_char, :image_url
 
   validates :song_id, :annotator_id, :presence => true
   validate :start_end_chars_fall_within_lyrics
