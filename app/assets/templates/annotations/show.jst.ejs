@@ -4,7 +4,7 @@
 <%= annotation.escape('body') %>
 </pre>
 <% if (annotation.get('image_url')) { %>
-	<img src="<%= annotation.escape('image_url') %>"></img>
+	<img src="<%= annotation.get('image_url') %>"></img>
 <% } %>
 <br>
 <% var annotator = annotation.get('annotator') %>
