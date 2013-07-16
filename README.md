@@ -16,11 +16,11 @@ Versa is a single-page web application built in client-side Backbone.js and serv
 
 Versa's features include:
 
-  • Single-page app utilizing Backbone.js and AJAX.
-  • Rails backend.
-  • Backbone Relational, including many-to-many relationships.
-  • Ruby on Rails backend.
-  • Custom-built dynamic text annotation.
-  • Dynamic search with Solr (server-side) and Select2 (client-side).
-  • User authentication with Devise.
-  • Custom JSON with RABL.
+  • Single-page app utilizing Backbone.js and AJAX. 
+  • Rails backend. 
+  • Backbone Relational, including many-to-many relationships. 
+  • Ruby on Rails backend. 
+  • Custom-built dynamic text annotation. 
+  • Dynamic search with Solr (server-side) and Select2 (client-side). 
+  • User authentication with Devise. 
+  • Custom JSON with RABL. 
