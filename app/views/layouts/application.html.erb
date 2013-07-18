@@ -7,12 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if notice %>
-<div class="notice"><%= notice %></div>
-<% end %>
-<% if alert %>
-<div class="alert"><%= alert %></div>
-<% end %>
 <div class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container-fluid">
@@ -22,13 +16,25 @@
 				<li><a href="#/artists/">Artists</a></li>
 				<li><a href="#/songs/">Songs</a></li>
 				<li><a href="#/users/">Users</a></li>
+        <% if current_user %>
+        <li><%= link_to "Log Out", destroy_user_session_url, :method => :delete %></li>
+        <% else %>
         <li><a href="/log_out">Log Out</a></li>
+        <% end %>
       </ul>
       <% end %>
 		</div>
 	</div>
 </div>
 <div class="container-fluid" style="padding-bottom: 120px">
+<% if notice || alert %>
+<div class="row-fluid text-center">
+  <div class="span4 offset4">
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
+  </div>
+</div>
+<% end %>
 <%= yield %>
 </div>
 <div class="navbar navbar-fixed-bottom bottom-menu bottom-menu-inverse">
