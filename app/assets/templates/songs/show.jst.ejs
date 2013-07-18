@@ -22,9 +22,13 @@
 <% }; %>
 
 <p><strong>Highlight text to annotate</strong></p>
-<div id="lyrics">
-<pre>
-<%= song.escape('lyrics') %>
-</pre>
+<div class="row-fluid">
+  <div class="span8">
+    <div id="lyrics">
+    <pre>
+    <%= song.escape('lyrics') %>
+    </pre>
+    </div>
+    <a href="/#/">Back</a>
+  </div>
 </div>
-<a href="/#/">Back</a>
