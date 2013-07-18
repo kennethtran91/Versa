@@ -24,6 +24,9 @@ Versa::Application.routes.draw do
   	end
   end
 
+  get 'guest', to: 'root#guest'
+  get 'log_out', to: 'root#log_out'
+
   resources :users, :only=> [:index, :show] do
     member do
       resources :followings, :only => :create do

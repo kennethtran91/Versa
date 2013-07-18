@@ -1,4 +1,6 @@
 class AnnotationsController < ApplicationController
+
+skip_before_filter :verify_authenticity_token, :only => [:create]
 	
 	def show
 		@annotation = Annotation.find(params[:id])
@@ -13,7 +15,7 @@ class AnnotationsController < ApplicationController
 	end
 
 	def create
-		@annotation = current_user.annotations.new(params[:annotation])
+		@annotation = current_or_guest_user.annotations.new(params[:annotation])
 
 		if @annotation.save
 			notices << "Successfully created annotation."

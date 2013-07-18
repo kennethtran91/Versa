@@ -17,11 +17,14 @@
 	<div class="navbar-inner">
 		<div class="container-fluid">
 			<a class="brand" href="#">VERSA</a>
+      <% if current_user || session[:guest_user_id] %>
 			<ul class="nav">
 				<li><a href="#/artists/">Artists</a></li>
 				<li><a href="#/songs/">Songs</a></li>
 				<li><a href="#/users/">Users</a></li>
-			</ul>
+        <li><a href="/log_out">Log Out</a></li>
+      </ul>
+      <% end %>
 		</div>
 	</div>
 </div>
