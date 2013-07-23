@@ -10,6 +10,8 @@ gem 'rabl'
 gem 'oj'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
