@@ -35,6 +35,7 @@ end
 gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'devise'
+gem 'newrelic_rpm'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
