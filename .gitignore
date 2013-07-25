@@ -16,3 +16,5 @@
 
 # Ignore solr data
 /solr/data
+
+/config/application.yml
