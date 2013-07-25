@@ -43,8 +43,8 @@ Versa::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => "versa-dev",
-      :access_key_id => "AKIAI6OYN6AEP7DJTQPQ",
-      :secret_access_key => "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"
+      :access_key_id => ENV['AWS_ACCESS_KEY'],
+      :secret_access_key => ENV['AWS_SECRET_KEY']
     }
   }
 
