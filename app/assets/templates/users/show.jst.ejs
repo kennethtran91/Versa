@@ -38,20 +38,21 @@
 		<ul>
 		<% var followers = [] %>
 		<% user.get('followings').each(function (following) { %>
-		<%	followers.push(following.get('follower')) %>
-		<%	}) %>
-		<% _(followers).each(function (follower) { %>
-		<li><a href="#/users/<%=follower.id%>">	<%= follower.escape('username') %> </li></a>
-		<%	}) %>
+			<%	followers.push(following.get('follower')) %>
+			<%	}) %>
+			<% _(followers).each(function (follower) { %>
+				<li><a href="#/users/<%=follower.id%>">	<%= follower.escape('username') %> </li></a>
+			<%	}) %>
 		</ul>
+
 		<h6>Following</h6>
 		<ul>
 		<% var followeds = [] %>
 		<% user.get('follows').each(function (followed) { %>
-		<%	followeds.push(followed.get('followed')) %>
-		<%	}) %>
+			<%	followeds.push(followed.get('followed')) %>
+			<%	}) %>
 		<% _(followeds).each(function (followed) { %>
-		<li><a href="#/users/<%=followed.id%>">	<%= followed.escape('username') %> </li></a>
+			<li><a href="#/users/<%=followed.id%>">	<%= followed.escape('username') %> </li></a>
 		<%	}) %>
 		</ul>
 	</div>

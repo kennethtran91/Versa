@@ -6,5 +6,5 @@ Versa.Views.ArtistsIndex = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		return this;
 	},
-
+  
 });

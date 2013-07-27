@@ -1,4 +1,5 @@
 Versa.Views.SongShow = Backbone.View.extend({
+	
 	initialize: function() {
 		var that = this;
 		var events = ["add", "change", "remove", "destroy", "sync"];
@@ -21,41 +22,51 @@ Versa.Views.SongShow = Backbone.View.extend({
 	},
 
 	render: function() {
-		var artist = this.model.get('artist');
-		var albums = this.model.get('albums');
-		var annotations = this.model.get('annotations');
+		this.getAssociatedModels();
 		var renderedContent = this.template({
 			song: this.model,
-			artist: artist,
-			albums: albums,
-			annotations: annotations});
+			artist: this.artist,
+			albums: this.albums,
+			annotations: this.annotations});
 		this.$el.html(renderedContent);
 		this.$el.trigger("render:success");
 		return this;
+	},
+
+	getAssociatedModels: function() {
+		this.artist = this.model.get('artist');
+		this.albums = this.model.get('albums');
+		this.annotations = this.model.get('annotations');
 	},
 
 	highlightAnnotatedText: function() {
 		var that = this;
 		var $lyrics = $('#lyrics');
 		var text = $lyrics.text();
+
+		// go through all of the text on the page, and attach the annotations to the corresponding text, according to the start and end char indices of the annotation
 		that.model.get('annotations').each(function(annotation) {
 			var start_char = annotation.get('start_char');
 			var end_char = annotation.get('end_char');
 			var substr = text.substr(start_char, end_char - start_char);
 			$lyrics.highlight(substr);
 
-			$('.highlight').each(function() {
-				var text = $(this).text();
-				if (text === substr) {
-					$(this).wrap(function() {
-						var id = annotation.id;
-						var url = "#/annotations/" + id;
-						var $link = $('<a>').addClass('annotation').attr('href', url).attr('data-id', id);
-						return $link;
-					})
-				}
-			})
+			that.attachLinkToAnnotation(substr, annotation);
 		});
+	},
+
+	attachLinkToAnnotation: function(substr, annotation) {
+		$('.highlight').each(function() {
+			var text = $(this).text();
+			if (text === substr) {
+				$(this).wrap(function() {
+					var id = annotation.id;
+					var url = "#/annotations/" + id;
+					var $link = $('<a>').addClass('annotation').attr('href', url).attr('data-id', id);
+					return $link;
+				})
+			}
+		})
 	},
 
 	annotationPopUp: function(annotation) {
@@ -88,46 +99,54 @@ Versa.Views.SongShow = Backbone.View.extend({
 	captureSelectedText: function(event) {
 		event.stopPropagation();
 		var body = $('#lyrics').text();
-
 		var range = window.getSelection().getRangeAt(0);
-		if (range.endOffset - range.startOffset) {
-			console.log(range.endOffset - range.startOffset);
-			console.log("show the button");
-			range.collapse(false);
-			var dummy = document.createElement("span");
-			range.insertNode(dummy);
-			var rect = dummy.getBoundingClientRect();
-			var x = rect.right + window.scrollX;
-			var y = rect.top + window.scrollY;
-			this.coords = [x, y]
-			dummy.parentNode.removeChild(dummy);
 
+		if (range.endOffset - range.startOffset) {
+			this.getCoordsOfSelection(range);
+
+			//capture the selected text
 			var substr = window.getSelection().toString();
+
+			// get the index of the start and end chars of the annotated 
+			// text to avoid saving the text twice
 			Versa.Store.startChar = body.indexOf(substr);
 			Versa.Store.endChar = Versa.Store.startChar + substr.length;
 
 			this.annotateButton(this.coords);
 		} else {
-			console.log(range.endOffset - range.startOffset);
-			console.log("remove the button");
-			$('.annotateButton').remove();
+			this.hideAnnotateButton();
 		}
 	},
 
+	getCoordsOfSelection: function(range) {
+		//create a "dummy" span to capture the coordinates of the end of the selection
+		range.collapse(false);
+		var dummy = document.createElement("span");
+		range.insertNode(dummy);
+		var rect = dummy.getBoundingClientRect();
+		var x = rect.right + window.scrollX;
+		var y = rect.top + window.scrollY;
+		this.coords = [x, y]
+		dummy.parentNode.removeChild(dummy);
+	},
+
 	annotateButton: function(coords) {
-	  var $button = $('<a>').text('Annotate').attr({"class": "btn btn-small btn-block btn-warning", "href": "#"});
+	  var $button = $('<a>').text('Annotate')
+	  									.attr({
+	  										"class": "btn btn-small btn-block btn-warning", 
+	  										 "href": "#"});
 	  var $annotateDiv = $('<div>')
 	                    .attr({'class':'annotateButton'})
 	                    .css({
 	                      'left': coords[0] - 80 + 'px',
-	                      'top': coords[1] - 38 + 'px'
+	                       'top': coords[1] - 38 + 'px'
 	                    })
 	                    .append($button);
 
 	  if ($('.annotateButton').size()){
 	    $('.annotateButton').css({
 	      'left': coords[0] + 'px',
-	      'top': coords[1] + 'px'
+	       'top': coords[1] + 'px'
 	    })
 	  } else {
 	    this.$el.append($annotateDiv);
@@ -135,13 +154,8 @@ Versa.Views.SongShow = Backbone.View.extend({
 
 	},
 
-	hideAnnotateButton: function(event) {
-		if (event.target.id != ".annotateButton") {
-			if ($('.annotateButton').size()) {
-				console.log($('.annotateButton').size())
-		    // $('.annotateButton').remove();
-		  };
-		};
+	hideAnnotateButton: function() {
+		$('.annotateButton').remove();
 	},	
 
 	showAnnotationForm: function(event) {

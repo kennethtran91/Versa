@@ -1,5 +1,4 @@
 Versa.Views.ArtistShow = Backbone.View.extend({
-
 	template: JST['artists/show'],
 
 	render: function() {

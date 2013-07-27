@@ -2,7 +2,7 @@ Versa.Views.AnnotationForm = Backbone.View.extend({
 	template: JST['annotations/form'],
 
 	events: {
-		"click input[type='submit']": "createAnnotation",
+		"click input[type='submit']": "newAnnotation",
 	},
 
 	render: function() {
@@ -16,11 +16,10 @@ Versa.Views.AnnotationForm = Backbone.View.extend({
 	fillPopUpFormInfo: function() {
 	  this.$el.find('input#annotation_start_char').val(Versa.Store.startChar);
 	  this.$el.find('input#annotation_end_char').val(Versa.Store.endChar);
-	  console.log(Versa.Store.startChar);
-	  console.log(Versa.Store.endChar);
 	},
 
-	createAnnotation: function(event) {
+	newAnnotation: function(event) {
+		var that = this;
 		event.preventDefault();
 		var attrs = $(event.target.form).serializeJSON();
 		var songID = Versa.Store.song.id;
@@ -29,13 +28,17 @@ Versa.Views.AnnotationForm = Backbone.View.extend({
 		var newAnnotation = new Versa.Models.Annotation();
 		newAnnotation.save(attrs['annotation'], {
 			success: function(data) {
-				Versa.Store.LastCreatedAnnotationID = data.get('id');
-				Versa.Store.song.get('annotations').add(data);
-				Versa.Store.song.save;
-				$('.annotationDiv').bPopup().close();
-				$('.song_lyrics').trigger("annotationCreated")
+				that.saveAnnotation(data);
 			}
 		})
+	},
+
+	saveAnnotation: function(data) {
+		Versa.Store.LastCreatedAnnotationID = data.get('id');
+		Versa.Store.song.get('annotations').add(data);
+		Versa.Store.song.save;
+		$('.annotationDiv').bPopup().close();
+		$('.song_lyrics').trigger("annotationCreated");
 	},
 
 });

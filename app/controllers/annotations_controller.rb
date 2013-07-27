@@ -43,13 +43,4 @@ skip_before_filter :verify_authenticity_token, :only => [:create]
 		render :json => @annotation
 	end
 
-	def edit
-	end
-
-	def update
-	end
-
-	def destroy
-	end
-
 end
