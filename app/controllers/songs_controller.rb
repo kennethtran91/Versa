@@ -3,7 +3,7 @@ include SongHelper
 	respond_to :json
 
 	def index
-		@songs = Song.includes(:artist).all
+		@songs = Song.includes(:artist).order(:title).all
 		render :json => @songs.to_json(:include => [:artist])
 	end
 
