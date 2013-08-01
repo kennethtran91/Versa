@@ -1,7 +1,20 @@
-<div class="search-field">
-  <input id="songs">
+<div class="text-center">
+Search for or select a song to play and view lyrics.
+<br>
+<br>
 </div>
-<div class="song-list">
-  <ul>
+<div class="search-field">
+  <input type="text" id="songs" class="span3">
+</div>
+<div class>
+  <ul class="song-list">
+    <% songs.each(function(song) { %>
+    <li class="btn btn-small btn-block btn-primary song-button"
+        data-id="<%= song.id %>">
+      <% var title = song.escape('title') %>
+      <% var artistName = song.get('artist').escape('name') %>
+      <%= title %><br><%= artistName %>
+    </li>
+    <% }); %>
   </ul>
 </div>

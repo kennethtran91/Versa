@@ -40,7 +40,8 @@ include SongHelper
 
 	def search
 		@search = Song.search(:include => [:artist]) do
-			keywords(params[:q]) 
+			keywords(params['keywords'])
+			fulltext(params['keywords'])
 		end
 		@songs = @search.results
 		render :json => @songs.to_json(:include => [:artist])

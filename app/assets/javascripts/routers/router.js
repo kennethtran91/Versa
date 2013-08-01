@@ -25,11 +25,11 @@ Versa.Router = Backbone.Router.extend({
 
 	listSongs: function() {
 		var that = this;
-		var songList = new Versa.Views.SongsIndex({
+		var songPicker = new Versa.Views.SongPicker({
 			collection: Versa.Store.songs,
 		});
-		$('#side_nav').html(songList.render().el);
-		songList.renderSearch();
+		$('#side_nav').html(songPicker.render().el);
+		songPicker.initAutocomplete();
 	},
 
 	bigSongIndex: function() {
