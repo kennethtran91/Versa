@@ -1,16 +1,18 @@
 <div class="row-fluid">
-  <div class="span4 offset4 text-center">
-    <h2>Sign in</h2>
+  <div class="span6 offset3 text-center">
+    <h2>Versa</h2>
+    <p><small>Versa is a hip-hop lyric annotation web app.
+    Check out annotations others have left on lyrics, or leave your own.</small></p>
+    <h4>Sign in</h4>
+    <br>
+    <a href="/guest" class="btn btn-large btn-primary">Try Out As Guest</a> 
+    <a href="/users/auth/facebook" class="btn btn-large btn-info">
+    <i class="fui-facebook"></i>
+     via Facebook
+    </a>
     <br>
     <br>
-    <p>Versa is a hip-hop lyric annotation web app.
-    Check out annotations others have left on lyrics, or leave your own.</p>
-    <br>
-    <br>
-    <a href="/guest" class="btn btn-huge btn-primary">Try Out As Guest</a>
-    <br>
-    <br>
-
+    <p>or manually...</p>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <div>
       <%= f.text_field :username, :autofocus => true, :placeholder => "Username" %></div>

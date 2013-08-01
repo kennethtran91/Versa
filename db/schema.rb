@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708215420) do
+ActiveRecord::Schema.define(:version => 20130801001820) do
 
   create_table "album_tracks", :force => true do |t|
     t.integer  "album_id"
@@ -96,6 +96,10 @@ ActiveRecord::Schema.define(:version => 20130708215420) do
     t.datetime "updated_at",                             :null => false
     t.string   "username"
     t.string   "avatar_url"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

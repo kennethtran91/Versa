@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
-  attr_accessible :email, :username, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :username, :password, 
+    :password_confirmation, :remember_me, :provider, :uid, 
+    :avatar_url, :oauth_token
 
   validates_presence_of :username
 
@@ -28,6 +31,49 @@ class User < ActiveRecord::Base
   has_many :followed_users,
     :through => :follows,
     :source => :followed
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(
+        provider: auth.provider,
+        uid: auth.uid,
+        username: auth.info.name,
+        email: auth.info.email,
+        password: Devise.friendly_token[0, 20],
+        oauth_token: auth.credentials.token,      
+        )
+      user.set_photo
+    end
+    user
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+
+  def set_photo
+    albums = self.facebook.get_connections("me", "albums")
+    album_id = nil
+    albums.each do |album| 
+      album_id = album["id"] if album["name"] == "Profile Pictures"
+    end
+    photos = self.facebook.get_connections(album_id, "photos")
+    self.avatar_url = photos[0]["images"][5]["source"]
+    self.save!
+  end
+
+  def rap_iq
+
+  end
 
 
 end

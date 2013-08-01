@@ -1,6 +1,8 @@
 Versa::Application.routes.draw do
   root :to => "root#root"
-  devise_for :users
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "omniauth_callbacks"
+  }
 
   resources :albums, :only => [:show]
 	resources :artists, :only => [:index, :show] do

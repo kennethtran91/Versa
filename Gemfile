@@ -9,6 +9,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'koala', "~> 1.7.0rc1"
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'

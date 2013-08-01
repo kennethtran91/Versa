@@ -6,6 +6,7 @@ Versa.Router = Backbone.Router.extend({
 
 	routes: {
 		"" : "homePage",
+		"_=_" : "homePage",
 		"songs/": "bigSongIndex",
 		"songs/new": "newSong",
 		"songs/:id": "showSong",
