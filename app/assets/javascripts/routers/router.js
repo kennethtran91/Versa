@@ -25,11 +25,11 @@ Versa.Router = Backbone.Router.extend({
 
 	listSongs: function() {
 		var that = this;
-		var songPicker = new Versa.Views.SongPicker({
+		Versa.Store.songPicker = new Versa.Views.SongPicker({
 			collection: Versa.Store.songs,
 		});
-		$('#side_nav').html(songPicker.render().el);
-		songPicker.initAutocomplete();
+		$('#side_nav').html(Versa.Store.songPicker.render().el);
+		Versa.Store.songPicker.initAutocomplete();
 	},
 
 	bigSongIndex: function() {
@@ -111,6 +111,10 @@ Versa.Router = Backbone.Router.extend({
 				that._swapView(userShow);
 			}
 		})
+	},
+
+	goBack: function() {
+		window.history.back()
 	},
 
 	_swapView: function(view) {

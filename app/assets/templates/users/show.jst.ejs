@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row-fluid">
 	
 	<div class="span6">
 		<h5>User: <%= user.escape('username') %></h5>
@@ -8,9 +8,7 @@
 	<div class="span5 offset1">
 		<img src="<%=user.escape('avatar_url')%>"></img>
 	</div>
-	<div class="span3">
-		<a href="#" class="btn btn-warning follow-user">Follow</a><br>
-		<a href="#" class="btnw btn-warning unfollow-user">Unfollow</a>
+	<div class="span3 follow-button">
 	</div>
 </div>
 
@@ -35,7 +33,7 @@
 
 	<div class="span3">
 		<h6>Followers</h6>
-		<ul>
+		<ul class="followers">
 		<% var followers = [] %>
 		<% user.get('followings').each(function (following) { %>
 			<%	followers.push(following.get('follower')) %>
@@ -46,7 +44,7 @@
 		</ul>
 
 		<h6>Following</h6>
-		<ul>
+		<ul class="followers">
 		<% var followeds = [] %>
 		<% user.get('follows').each(function (followed) { %>
 			<%	followeds.push(followed.get('followed')) %>

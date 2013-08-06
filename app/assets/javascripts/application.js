@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require jquery.serializeJSON.min
 //= require select2
+//= require sdk
 //= require underscore
 //= require backbone
 //= require backbone-relational

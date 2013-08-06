@@ -2,7 +2,8 @@ Versa.Views.AnnotationForm = Backbone.View.extend({
 	template: JST['annotations/form'],
 
 	events: {
-		"click input[type='submit']": "newAnnotation",
+		"click .submit-button": "newAnnotation",
+		"click a.image-upload-button": "selectImage",
 	},
 
 	render: function() {
@@ -31,6 +32,22 @@ Versa.Views.AnnotationForm = Backbone.View.extend({
 				that.saveAnnotation(data);
 			}
 		})
+	},
+
+	selectImage: function(event) {
+		var that = this;
+		event.preventDefault();
+		filepicker.pickAndStore(
+			{mimetype:"image/*"},
+			{location:"S3"},
+			function(InkBlobs) {
+				var InkBlob = InkBlobs[0];
+				$('a.image-upload-button').remove();
+				$('input.image-url').val(InkBlob.url);
+				var $img = $('<img>').attr('src', InkBlob.url);
+				$('span.annotation-image').append($img);
+				return InkBlob.url;
+			});
 	},
 
 	saveAnnotation: function(data) {

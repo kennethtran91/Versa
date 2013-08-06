@@ -6,6 +6,12 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= filepicker_js_include_tag %>
+  <script type="text/javascript">
+  filepicker.setKey('Ay15Y4QyxQsmvepVMU8Idz');
+  SC.initialize({
+    client_id: '42eec25af78b5f70cbd8fb91d1e15ed6'
+  });
+  </script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top navbar-inverse">
@@ -31,9 +37,13 @@
 <%= yield %>
 </div>
 <div class="navbar navbar-fixed-bottom bottom-menu bottom-menu-inverse">
-	<div class="container-fluid">
-		<p>Created by Ricky Zein while attending App Academy.</p>
-	</div>
+  <div class="span11 offset1">
+    <div class="control-button">
+       <% if current_user || session[:guest_user_id] %>
+      <span class="fui-play"></span>
+      <% end %>
+    </div>
+  </div>
 </div>
 </body>
 </html>

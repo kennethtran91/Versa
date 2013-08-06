@@ -16,8 +16,11 @@
 
 <label for="annotation_body">Annotation:</label>
 <textarea rows="5" name="annotation[body]" id="annotation_body"></textarea>
-<label for="annotation_image_url">Annotation Image URL:</label>
-<input type="text" name="annotation[image_url]">
 <br>
-<input type="submit" value="Submit Annotation">
+Annotation Image:
+<div class="text-center annotation-image">
+<a href="#" class="btn btn-mini btn-info image-upload-button">Upload Image</a>
+</div>
+<input class="image-url" type="hidden" name="annotation[image_url]">
+<button class="btn btn-primary btn-block submit-button">Submit Annotation</button>
 </form>

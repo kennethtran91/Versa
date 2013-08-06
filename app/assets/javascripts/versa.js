@@ -12,7 +12,18 @@ window.Versa = {
         Backbone.history.start();
       }
     });
-  }
+  },
+
+  makePauseButton: function() {
+    $('span.fui-play').removeClass().addClass('fui-pause');
+    $('span.fui-pause').on('click', function() {
+      Versa.Store.songPicker.$el.trigger('stop-song');
+    })
+  },
+
+  makePlayButton: function() {
+    $('span.fui-pause').removeClass().addClass('fui-play');
+  },
 };
 
 

@@ -71,9 +71,5 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  def rap_iq
-
-  end
-
 
 end

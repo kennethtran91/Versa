@@ -1,12 +1,10 @@
 <div class="text-center">
-Search for or select a song to play and view lyrics.
-<br>
-<br>
+  <p><a href="#/songs/new" class="btn btn-success btn-block">Add New Song</a></p>
 </div>
 <div class="search-field">
-  <input type="text" id="songs" class="span3">
+  <input type="text" id="songSearch" class="span3" placeholder="Search for song">
 </div>
-<div class>
+<div class="songs-index">
   <ul class="song-list">
     <% songs.each(function(song) { %>
     <li class="btn btn-small btn-block btn-primary song-button"

@@ -6410,8 +6410,9 @@ input.search-query {
         top:60px;
         width:23.404%;
         float:left;
-        padding-bottom: 150px;
-        overflow: scroll;
+        padding-bottom: 250px;
+        overflow: auto;
+        height: 80%;
     }
 }
 
@@ -6434,4 +6435,18 @@ ul.song-list {
 
 li.song-button {
   padding: 0px;
+}
+
+.control-button {
+  height: 40px;
+  color: #FFF;
+  font-size: 40px;
+}
+
+.control-button:hover {
+  color: #AAA;
+}
+
+.song-picker {
+  padding-right: 10px;
 }

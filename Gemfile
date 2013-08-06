@@ -11,7 +11,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'filepicker-rails'
 gem 'koala', "~> 1.7.0rc1"
-
+gem 'soundcloud'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'select2-rails'
