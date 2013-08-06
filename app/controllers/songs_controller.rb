@@ -39,11 +39,7 @@ include SongHelper
 	end
 
 	def search
-		@search = Song.search(:include => [:artist]) do
-			keywords(params['keywords'])
-			fulltext(params['keywords'])
-		end
-		@songs = @search.results
+		@songs = Song.order(:title).where("title ilike ?", "%#{params['keywords']}%")
 		render :json => @songs.to_json(:include => [:artist])
 	end
 

@@ -19,8 +19,8 @@ class Song < ActiveRecord::Base
   validates :title, :lyrics, :presence => true
 
   searchable do
-    text :title, :as => :title_textp
-    text :artist, :as => :artist_textp do
+    text :title
+    text :artist do
       artist.name
     end
   end
@@ -33,6 +33,10 @@ class Song < ActiveRecord::Base
   end
 
   private
+
+  def artist_name
+    artist.name
+  end
 
   def resolve_sc_url
     url = self.soundcloud_url
