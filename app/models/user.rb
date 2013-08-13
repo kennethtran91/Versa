@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   	:inverse_of => :annotator,
   	:foreign_key => :annotator_id
 
+  has_many :votes,
+    :through => :annotations,
+    :source => :likes
+
   has_many :likes
 
   has_many :followings,
@@ -31,6 +35,16 @@ class User < ActiveRecord::Base
   has_many :followed_users,
     :through => :follows,
     :source => :followed
+
+  def as_json(options = {})
+    json = super(options)
+    json[:iq] = self.iq
+    json
+  end
+
+  def iq
+    (votes.like_count * 100) - (votes.dislike_count * 10)
+  end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

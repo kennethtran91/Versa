@@ -8,6 +8,17 @@ class Like < ActiveRecord::Base
   belongs_to :annotation
   belongs_to :user
 
+  scope :likes, where(:dislike => false)
+  scope :dislikes, where(:dislike => true)
+
+  def self.like_count
+    self.likes.count
+  end
+
+  def self.dislike_count
+    self.dislikes.count
+  end
+
   private
   def user_cant_vote_twice
   	like_exists = Like.where(:user_id => self.user_id, 
