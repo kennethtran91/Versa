@@ -1,12 +1,13 @@
 <h3>Artists</h3>
 <br>
 <% var sortedArtists = artists.sortBy('name') %>
+<ul class="artists">
 <% _(sortedArtists).each(function(artist) { %>
-	<ul>
+  <li>
+  <p>
 	<% var href = "#/artists/" + artist.id %>
 	<a href=<%= href %>><%= artist.escape('name') %></a>
-	</ul>
+  </p>
+  </li>
 <% }) %>
-<br>
-<br>
-<a href="#/songs/new">Add a new song</a><br>
+</ul>

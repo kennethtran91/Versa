@@ -6450,3 +6450,17 @@ li.song-button {
 .song-picker {
   padding-right: 10px;
 }
+
+ul.artists {
+  list-style-type: none;
+}
+
+.info-text {
+  font-size: 80%;
+  font-style: italic;
+}
+
+.artist-image {
+  max-height: 300px;
+  max-width: 300px;
+}

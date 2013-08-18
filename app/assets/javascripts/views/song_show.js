@@ -14,6 +14,9 @@ Versa.Views.SongShow = Backbone.View.extend({
 	template: JST["songs/show"],
 
 	events: {
+		"dblclick .about-click": "appendAboutInput",
+		"keypress": "focusOut",
+		"focusout .about-song-input": "submitAbout",
 		"render:success": "highlightAnnotatedText",
 		"click a.annotation": "displayAnnotation",
 		"mouseup #lyrics": "captureSelectedText",
@@ -39,12 +42,40 @@ Versa.Views.SongShow = Backbone.View.extend({
 		this.annotations = this.model.get('annotations');
 	},
 
+	focusOut: function(e) {
+		if (e.keyCode == 13) {
+			$('.about-song-input').focusout();
+		};
+	},
+
+	appendAboutInput: function() {
+		var text = $('.about-click').text();
+		var $input = $('<input>').attr({
+				'data-id': this.model.id,
+					'class': 'about-song-input',
+				   'type': 'text',
+		'placeholder': "Click outside to submit edits.",
+					'value': text
+		});
+		$('.about').html($input);
+	},
+
+	submitAbout: function(event) {
+		var songID = $(event.target).data('id');
+		var aboutInput = $(event.target).val();
+		var attrs = {
+				'song_info': aboutInput
+			};
+
+		this.model.set(attrs);
+		Backbone.sync("update", this.model);
+	},
+
 	highlightAnnotatedText: function() {
 		var that = this;
 		var $lyrics = $('#lyrics');
 		var text = $lyrics.text();
 
-		// go through all of the text on the page, and attach the annotations to the corresponding text, according to the start and end char indices of the annotation
 		that.model.get('annotations').each(function(annotation) {
 			var start_char = annotation.get('start_char');
 			var end_char = annotation.get('end_char');

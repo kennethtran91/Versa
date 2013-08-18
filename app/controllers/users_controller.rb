@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	respond_to :json
 
 	def index
-		@users = User.all
+		@users = User.includes(:annotations).all
 		render :json => @users
 	end
 

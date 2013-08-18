@@ -5,7 +5,7 @@ Versa::Application.routes.draw do
   }
 
   resources :albums, :only => [:show]
-	resources :artists, :only => [:index, :show] do
+	resources :artists, :only => [:index, :show, :update] do
     collection do
       get 'search'
     end

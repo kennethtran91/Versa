@@ -1,30 +1,52 @@
-<h1><%= artist.escape('name') %></h1>
-<% if (artist.get('avatar_url')) { %>
-	<img src='<%= artist.escape('avatar_url') %>' style="width: 50%"></img>
-<% } %>
-<% if (artist.get('bio')) { %>
-	<h3>Bio</h3>
-	<%= artist.escape('bio') %>
-<% } %>
-<br>
-<br>
-<h3>Songs</h3>
-<% songs = artist.get('songs').sortBy("title") %>
-<ul>
-	<% _(songs).each(function(song) { %>
+<div class="span8 offset1">
+	<h1><%= artist.escape('name') %></h1>
+
+	<% if (artist.get('avatar_url')) { %>
+		<div class="artist-image" style="margin-bottom: 20px">
+			<img src='<%= artist.escape('avatar_url') %>' style="max-width: 100%; max-height: 100%"></img>
+		</div>
+	<% } else { %>
+		<span class="info-text">
+		This artist doesn't have an image yet. <br>
+		Click below to upload an image for this artist!
+		</span>
+		<br>
+		<br>
+		<a href="#" class="btn btn-mini image-upload-button">Upload Image</a>
+	<% } %>
+
+	<h4>Bio</h4>
+	<% if (artist.get('bio')) { %>
+		<span class="info-text">Double-click the text below to edit this artist's bio.</span>
+		<div class="bio" style="margin-top: 10px">
+			<span class="bio-text"><%= artist.escape('bio') %></span>
+		</div>
+	<% } else { %>
+		<div class="bio">
+			<span class="bio-text info-text">No bio yet. Double-click to add a bio!</span>
+		</div>
+	<% } %>
+	<br>
+	<br>
+
+	<h4>Songs</h4>
+	<% songs = artist.get('songs').sortBy("title") %>
+	<ul>
+		<% _(songs).each(function(song) { %>
+		<li>
+			<% var songHref = "#/songs/" + song.id %>
+			<a href="<%= songHref %>"><%= song.escape('title') %></a>
+		</li>
+		<% }) %>
+	</ul>
+
+	<h4>Albums</h4>
+	<% artist.get('albums').each(function(album) { %>
 	<li>
-		<% var songHref = "#/songs/" + song.id %>
-		<a href="<%= songHref %>"><%= song.escape('title') %></a>
+		<% var albumHref = "#/albums/" + album.id %>
+			<a href="<%= albumHref %>"><%= album.escape('title') %></a>
 	</li>
 	<% }) %>
-</ul>
-
-<h3>Albums</h3>
-<% artist.get('albums').each(function(album) { %>
-<li>
-	<% var albumHref = "#/albums/" + album.id %>
-		<a href="<%= albumHref %>"><%= album.escape('title') %></a>
-</li>
-<% }) %>
-<br>
-<br>
+	<br>
+	<br>
+</div>

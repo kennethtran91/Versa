@@ -8,6 +8,9 @@ class Like < ActiveRecord::Base
   belongs_to :annotation
   belongs_to :user
 
+  has_one :annotator,
+    :through => :annotation
+
   scope :likes, where(:dislike => false)
   scope :dislikes, where(:dislike => true)
 

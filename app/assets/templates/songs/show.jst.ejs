@@ -9,22 +9,50 @@
 	<a href="<%= artistHref %>"><%= artist.escape('name') %></a>
 </h4>
 
+<div class="row-fluid">
+
+<div class="span7">
+  <p><strong>Highlight text to annotate</strong></p>
+  <div id="lyrics">
+  <pre>
+  <%= song.escape('lyrics') %>
+  </pre>
+  </div>
+</div>
+
+<div class="span5">
+<h6>About This Song</h6>
+<% if (song.get('song_info')) { %>
+  <p class="info-text">
+  Double click the text below to edit song information.
+  </p>
+  <p>
+  <div class="about">
+  <p>
+  <span class="about-click"><%= song.escape('song_info') %></span></p>
+  </div>
+  </p>
+<% } else { %>
+<div class="about">
+<span class="about-click info-text">Double click here to enter a short summary of this song.</span>
+</div>
+<% } %>
+
+<br>
+<br>
+
 <% if (albums) { %>
-<strong>Albums:</strong>
+<h6>Albums:</h6>
 <ul>
-	<% _(albums).each(function(album) { %>
-	<li>
-		<% var albumHref = "/#/albums/" + album.id %>
-		<a href="<%= albumHref %>"><%= album.title %></a>
-	</li>
-	<% }); %>
+  <% _(albums).each(function(album) { %>
+  <li>
+    <% var albumHref = "/#/albums/" + album.id %>
+    <a href="<%= albumHref %>"><%= album.title %></a>
+  </li>
+  <% }); %>
 </ul>
 <% }; %>
+</div>
 
-<p><strong>Highlight text to annotate</strong></p>
-<div id="lyrics">
-<pre>
-<%= song.escape('lyrics') %>
-</pre>
 </div>
 <a href="/#/">Back</a>

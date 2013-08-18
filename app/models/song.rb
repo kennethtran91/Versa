@@ -3,7 +3,7 @@ class Song < ActiveRecord::Base
   before_save :resolve_sc_url
 
   attr_accessible :artist_id, :lyrics, :soundcloud_url, 
-  :spotify_uri, :title, :youtube_url, :year
+  :spotify_uri, :title, :youtube_url, :year, :song_info
 
   belongs_to :artist
 
@@ -17,13 +17,6 @@ class Song < ActiveRecord::Base
   has_many :annotations
 
   validates :title, :lyrics, :presence => true
-
-  searchable do
-    text :title
-    text :artist do
-      artist.name
-    end
-  end
 
   def self.soundcloud
     Soundcloud.new({

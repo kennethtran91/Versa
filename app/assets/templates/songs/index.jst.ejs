@@ -1,21 +1,23 @@
-
-<ul class="nav nav-list">
-<li class="nav-header">Songs</li>
-<li>
-<div id="search_div">
+<h3>Songs</h3>
+<div class="row-fluid">
+  <div class="span9">
+    <table class="table table-striped">
+    <tbody>
+    <tr>
+    <td><h6>Song</h6></td>
+    <td><h6>Artist</h6></td>
+    </tr>
+  <% songs.each(function(song) { %>
+  <tr>
+  <% var song_href = '/#/songs/' + song.id %>
+  <td><strong><a href="<%= song_href %>"><%= song.escape("title") %></a></strong></td>
+  <% var artist = song.get('artist') %>
+  <% var artist_href = '/#/artists/' + artist.id %>
+  <td><a href="<%= artist_href %>"> <%= artist.escape('name') %></a></td>
+  </tr>
+    <% }) %>
+    </tbody>
+    </table>
+    <a href='/#/songs/new'>Add New Song </a>
+  </div>
 </div>
-</li>
-<li><a href='/#/songs/new'>Add New Song </a></li>
-<li class="divider"></li>
-<% songs.each(function(song) { %>
-<li>
-<% var song_href = '/#/songs/' + song.id %>
-<span>
-<strong><a href="<%= song_href %>"><%= song.escape("title") %></a></strong>
-<% var artist = song.get('artist') %>
-<% var artist_href = '/#/artists/' + artist.id %>
-<small><a href="<%= artist_href %>"> (<%= artist.escape('name') %>)</a></small>
-</span>
-</li>
-<% }) %>
-</ul>

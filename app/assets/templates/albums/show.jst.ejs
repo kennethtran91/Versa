@@ -4,6 +4,7 @@
 <% } %>
 <br>
 <br>
+
 <% var artist = album.get('artist') %>
 <% var artistHref = "/#/artists/" + artist.id %>
 <strong> by <a href="<%= artistHref %>"><%= artist.escape('name') %></a>
@@ -12,6 +13,7 @@
 	<% } %>
 </strong>
 <br>
+
 <ol>
 <% _(tracks).each(function (track) { %>
 	<li>
@@ -20,4 +22,5 @@
 	</li>
 <% }) %>
 </ol>
+
 <a href="<%= artistHref %>">Back to <%= artist.escape('name') %></a>

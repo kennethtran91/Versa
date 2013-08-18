@@ -13,8 +13,4 @@ class Artist < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  searchable do
-  	text :name
-  end
-
 end
