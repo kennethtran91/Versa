@@ -85,5 +85,16 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def to_preact
+    {
+      :name => self.name,
+      :email => self.email,
+      :uid => self.id,
+      :properties => {
+        :created_at => self.created_at.to_i
+      }
+    }
+  end
+
 
 end

@@ -16,6 +16,7 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'select2-rails'
 gem 'therubyracer'
+gem 'preact'
 
 group :assets do
 	gem 'less-rails'
